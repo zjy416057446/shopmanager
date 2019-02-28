@@ -97,7 +97,7 @@
         <el-form-item label="角色">
           <!-- {{selevtval}} -->
           <el-select v-model="selevtval" placeholder="请选择角色名">
-            <el-option label="请选择" :value="-1"></el-option>
+            <el-option label="请选择" disabled :value="-1"></el-option>
             <el-option v-for="(item) in roles" :key="item.id" :label="item.roleName" :value="item.id"></el-option>
 
           </el-select>
@@ -178,16 +178,7 @@
         }
 
         const res2 = await this.$http.get(`users/${user.id}`);
-        // console.log(res2);
-        // const {
-        //   meta: { msg2, status2 },
-        //   data2
-        // } = res2.data;
-        // if (status2 === 200) {
 
-        // 所有角色5个[每个角色有自己的id]
-        // 用户信息中也有rid 角色rid
-        //
         this.selevtval = res2.data.data.rid;
       },
 
@@ -294,12 +285,10 @@
       },
       // 获取所有用户表单
       async getTableData() {
-        const AUTH_TOKEN = localStorage.getItem("token");
-        // console.log(AUTH_TOKEN);
-        this.$http.defaults.headers.common["Authorization"] = AUTH_TOKEN;
+
         const res = await this.$http.get(
           `users?query=${this.query}&pagenum=${this.pagenum}&pagesize=${this.pagesize}`)
-        console.log(res)
+        // console.log(res)
         const {
           data,
           meta: {
@@ -319,6 +308,10 @@
 </script>
 
 <style scoped>
+  .box {
+    height: 100%;
+  }
+
   .searchBox {
     margin-top: 20px;
   }
