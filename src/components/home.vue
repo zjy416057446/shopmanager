@@ -80,10 +80,10 @@
           },
           data
         } = res.data;
-        console.log(res);
+        // console.log(res);
         if (status === 200) {
           this.menus = data;
-          console.log(this.menus);
+          // console.log(this.menus);
         }
       },
       handleLoginout() {
